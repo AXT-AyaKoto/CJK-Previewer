@@ -12,7 +12,6 @@ await Promise.race([
     new Promise((resolve) => { setTimeout(resolve, 3000); }),
 ]);
 
-
 /**
  * document.querySelectorのエイリアス
  * @param {String} selector - CSSセレクタ
@@ -104,3 +103,12 @@ $$("section.diff-area select").forEach((select) => {
     });
 });
 
+/** ================================================================================================
+ * 定期的にcanvas描画更新
+================================================================================================= */
+
+setInterval(() => {
+    const letter = $("#input").value[0];
+    if (!letter) return;
+    updateDiff(letter);
+}, 1000 / 24);
