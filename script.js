@@ -70,6 +70,23 @@ const updateDiff = (letter) => {
         G: $("#diff-green").value,
         B: $("#diff-blue").value,
     };
+    /** 背景は透明？黒塗り？ */
+    switch ($("#diff-bg").value) {
+        case "transparent":
+            ctx.fillStyle = "rgba(0, 0, 0, 0)";
+            break;
+        case "black":
+            ctx.fillStyle = "rgb(0 0 0)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        case "white":
+            ctx.fillStyle = "rgb(255 255 255)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            break;
+        default:
+            break;
+    }
+    if (letter.length !== 1) return;
     /** 文字を描画 */
     ctx.globalCompositeOperation = "lighter";
     ["R", "G", "B"].forEach(key => {
@@ -88,7 +105,6 @@ const updateDiff = (letter) => {
 ================================================================================================= */
 
 $("section.input-area #input").addEventListener("input", (e) => {
-    if (e.target.value.length !== 1) return;
     const letter = e.target.value[0];
     if (!letter) return;
     updatePreview(letter);
@@ -109,6 +125,5 @@ $$("section.diff-area select").forEach((select) => {
 
 setInterval(() => {
     const letter = $("#input").value[0];
-    if (!letter) return;
     updateDiff(letter);
 }, 1000 / 24);
