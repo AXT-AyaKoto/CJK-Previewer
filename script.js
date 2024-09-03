@@ -87,14 +87,18 @@ const updateDiff = (letter) => {
 ================================================================================================= */
 
 $("section.input-area #input").addEventListener("input", (e) => {
+    if (e.target.value.length !== 1) return;
     const letter = e.target.value[0];
+    if (!letter) return;
     updatePreview(letter);
     updateDiff(letter);
 });
 
 $$("section.diff-area select").forEach((select) => {
     select.addEventListener("change", () => {
+        if (e.target.value.length !== 1) return;
         const letter = $("#input").value[0];
+        if (!letter) return;
         updateDiff(letter);
     });
 });
