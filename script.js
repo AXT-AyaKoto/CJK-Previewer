@@ -96,7 +96,6 @@ $("section.input-area #input").addEventListener("input", (e) => {
 
 $$("section.diff-area select").forEach((select) => {
     select.addEventListener("change", () => {
-        if (e.target.value.length !== 1) return;
         const letter = $("#input").value[0];
         if (!letter) return;
         updateDiff(letter);
