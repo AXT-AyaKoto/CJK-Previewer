@@ -74,12 +74,14 @@ const updateDiff = (letter) => {
     /** 文字を描画 */
     ctx.globalCompositeOperation = "lighter";
     ["R", "G", "B"].forEach(key => {
-        ctx.font = `400 1024px/1024px ${fontMap[select[key]]}`;
+        ctx.font = `400 1024px/1024px ${fontMap[select[key]]}, sans-serif`;
+        canvas.lang = select[key];
         ctx.fillStyle = color[key];
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(letter, 512, 512);
     });
+    canvas.lang = "ja-JP";
 };
 
 /** ================================================================================================

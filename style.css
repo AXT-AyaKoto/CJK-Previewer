@@ -544,23 +544,23 @@ main>.preview-area {
             font-size: 4rem;
 
             &#ja-JP {
-                font-family: 'Noto Sans JP';
+                font-family: 'Noto Sans JP', sans-serif;
             }
 
             &#ko-KR {
-                font-family: 'Noto Sans KR';
+                font-family: 'Noto Sans KR', sans-serif;
             }
 
             &#zh-Hans {
-                font-family: 'Noto Sans SC';
+                font-family: 'Noto Sans SC', sans-serif;
             }
 
             &#zh-Hant-TW {
-                font-family: 'Noto Sans TC';
+                font-family: 'Noto Sans TC', sans-serif;
             }
 
             &#zh-Hant-HK {
-                font-family: 'Noto Sans HK';
+                font-family: 'Noto Sans HK', sans-serif;
             }
         }
     }
