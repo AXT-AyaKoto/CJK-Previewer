@@ -1,0 +1,583 @@
+/* =================================================================================
+    フォントの読み込み
+================================================================================== */
+
+/* ==== 'M PLUS 1p' - 通常フォント ==== */
+/* ==== 'Ubuntu' - 英字デザインフォント ==== */
+/* ==== 'M PLUS 1 Code' - 等幅フォント ==== */
+/* ==== 'Zen Kurenaido' - 手書きフォント ==== */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Zen+Kurenaido&display=swap');
+/* ==== 'Font Awesome 6 Free' - アイコンフォント ==== */
+@import url('https://use.fontawesome.com/releases/v6.5.2/css/all.css');
+/* ==== 'Noto Sans JP' - プレビューフォント (ja-JP) ==== */
+/* ==== 'Noto Sans KR' - プレビューフォント (ko-KR) ==== */
+/* ==== 'Noto Sans SC' - プレビューフォント (zh-Hans) ==== */
+/* ==== 'Noto Sans TC' - プレビューフォント (zh-Hant-TW) ==== */
+/* ==== 'Noto Sans HK' - プレビューフォント (zh-Hant-HK) ==== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+SC:wght@100..900&family=Noto+Sans+TC:wght@100..900&display=swap');
+
+/* =================================================================================
+    色変数
+================================================================================== */
+
+:root {
+    --brand: #93dc9e;
+    --base: oklch(from var(--brand) 25% 0 h);
+    --text: oklch(from var(--brand) 80% 0.01 h);
+    --button-left: oklch(from var(--base) 27% c h);
+    --button-right: oklch(from var(--base) 31% c h);
+    --shadow-light: oklch(from var(--base) 45% c h / .3);
+    --shadow-dark: oklch(from var(--base) 5% c h / .3);
+}
+
+html {
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+/* =================================================================================
+    CSSのNormalize
+================================================================================== */
+
+* {
+    margin: 0;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 300;
+    font-family: 'Ubuntu', 'M PLUS 1p';
+    line-height: 1.5;
+    word-break: auto-phrase;
+    color: var(--text);
+}
+
+:where(ul, ol, li) {
+    padding-left: 0rem;
+    margin-left: 1rem;
+}
+
+/* スマホではmargin-leftを半分に */
+@media (max-width: 480px) {
+    :where(ul, ol, li) {
+        margin-left: .5rem;
+    }
+}
+
+/* =================================================================================
+    ニューモーフィズム
+================================================================================== */
+
+section,
+div.card,
+main img,
+table,
+.neumorphism-up {
+    border-radius: 1rem;
+    box-shadow: -3px -3px 4px var(--shadow-light), 3px 3px 4px var(--shadow-dark);
+    animation: fadeIn 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+section div.cards>.card>img.thumbnail,
+section input,
+section select,
+.neumorphism-down {
+    border-radius: 1rem;
+    box-shadow: inset -2px -2px 3px var(--shadow-light), inset 2px 2px 3px var(--shadow-dark);
+    background-color: transparent;
+}
+
+button,
+.neumorphism-button {
+    border-radius: 1.5rem;
+    padding-top: .125rem;
+    padding-bottom: .125rem;
+    box-shadow:
+        -3px -3px 5px var(--shadow-light),
+        3px 3px 5px var(--shadow-dark),
+        inset 0px 0px 0px var(--shadow-light),
+        inset 0px 0px 0px var(--shadow-dark);
+    background: linear-gradient(to right bottom, var(--button-left), var(--button-right));
+    transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+
+    &:hover {
+        box-shadow:
+            -4px -4px 6px var(--shadow-light),
+            4px 4px 6px var(--shadow-dark),
+            inset 0px 0px 0px var(--shadow-light),
+            inset 0px 0px 0px var(--shadow-dark);
+        transform: translateY(-.125px) scale(1.005);
+    }
+
+    &:active {
+        box-shadow:
+            0px 0px 0px var(--shadow-light),
+            0px 0px 0px var(--shadow-dark),
+            inset -2px -2px 3px var(--shadow-light),
+            inset 2px 2px 3px var(--shadow-dark);
+        transform: translateY(.125px) scale(0.995);
+    }
+}
+
+/* =================================================================================
+    センタリング
+================================================================================== */
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: auto;
+    padding-right: auto;
+    text-align: center;
+}
+
+/* =================================================================================
+    フェード
+================================================================================== */
+
+@keyframes fadeIn {
+    from {
+        filter: opacity(0);
+        transform: translateY(1rem);
+    }
+
+    to {
+        filter: opacity(1);
+        transform: translateY(0);
+    }
+}
+
+/* =================================================================================
+    共通スタイル
+================================================================================== */
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--base);
+
+    &>div {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        &>* {
+            animation: fadeIn 1s cubic-bezier(0.33, 1, 0.68, 1);
+            position: absolute;
+        }
+    }
+}
+
+/* =================================================================================
+    ヘッダー
+================================================================================== */
+
+header {
+    height: 3rem;
+    width: 100%;
+    box-shadow: 0px 0px 10px 10px var(--shadow-dark);
+    background-color: oklch(from var(--base) calc(l + 0.05) c h);
+    /* ==== 画面上部に固定 ==== */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1024;
+
+    &>a {
+        height: 100%;
+        text-decoration: none;
+        /* ==== Flexbox Layout ==== */
+        display: block flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        &>* {
+            height: 100%;
+            line-height: 3rem;
+        }
+
+        &>h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            /* ==== ロゴの色 ==== */
+            color: var(--text);
+        }
+    }
+}
+
+/* =================================================================================
+    共通スタイル
+================================================================================== */
+
+main {
+    width: 100%;
+
+    & :not(:is(button))>a {
+        color: var(--text);
+        text-decoration: none;
+        padding: 0 .25rem;
+        position: relative;
+        font: inherit;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: oklch(from var(--text) l 0.1 240 / .33);
+            transition: all 0.2s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        &:hover::after {
+            height: 100%;
+            background-color: oklch(from var(--text) l 0.1 240 / .1);
+        }
+    }
+
+    & :not(pre)>code {
+        font-family: 'M PLUS 1 Code', monospace;
+        font-weight: 400;
+        background-color: oklch(from var(--base) 0 c h / .5);
+        padding: 0 .25rem;
+        margin: 0 .125rem;
+        border-radius: .25rem;
+        border: 1px solid oklch(from var(--text) l c h / .33);
+    }
+
+    & pre:has(code) {
+        font-weight: 400;
+        background-color: oklch(from var(--base) 0 c h / .5);
+        padding: 0.125rem .5rem;
+        border-radius: .5rem;
+        border: 1px solid oklch(from var(--text) l c h / .33);
+        overflow-x: auto;
+
+        &>code {
+            font-family: 'M PLUS 1 Code', monospace;
+        }
+    }
+
+    & h1 {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+
+    & h2 {
+        font-size: 1.45rem;
+        font-weight: 400;
+    }
+
+    & h3 {
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+
+    & h4 {
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+    & h5 {
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    & h6 {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    & blockquote {
+        padding-left: .5rem;
+        border-left: 4px solid rgb(from var(--text) r g b / .5);
+        opacity: .8;
+    }
+
+    & strong,
+    & b {
+        font-weight: 500;
+    }
+
+    & em,
+    & i {
+        font-style: italic;
+    }
+
+    & img:not(.thumbnail) {
+        display: block;
+        max-width: calc(100% / 1.5);
+        max-height: calc(100vh / 3);
+        object-fit: cover;
+        border-radius: 1rem;
+        border: 1px solid oklch(from var(--text) l c h / .25);
+    }
+
+    & section section {
+        padding: .5rem;
+
+        &>*:not(:last-child) {
+            margin-bottom: .5rem;
+        }
+    }
+
+    & table {
+        width: 100%;
+        border: 1px solid oklch(from var(--text) l c h / .33);
+        border-spacing: .125rem;
+        border-radius: .5rem;
+
+        & :is(tr, th, td, thead, tbody) {
+            overflow: hidden;
+            border-radius: .25rem;
+        }
+
+        &>thead {
+            background-color: oklch(from var(--text) l c h / .06);
+
+            & * {
+                font-weight: bolder;
+            }
+        }
+
+        &>tbody>tr:last-child>td {
+            &:first-child {
+                border-bottom-left-radius: .5rem;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: .5rem;
+            }
+        }
+
+        & th,
+        & td {
+            padding: .125rem .25rem;
+            text-align: center;
+        }
+
+        & th {
+            background-color: oklch(from var(--text) l c h / .06);
+        }
+
+        & tr:nth-child(odd) {
+            background-color: oklch(from var(--text) l c h / .02);
+        }
+
+        & tr:nth-child(even) {
+            background-color: oklch(from var(--text) l c h / .04);
+        }
+    }
+}
+
+/* =================================================================================
+    メインコンテンツ部分
+================================================================================== */
+
+main {
+    /* ==== headerに被らないように上にpadding ==== */
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+
+    &>section {
+        width: min(90%, 72rem);
+        margin: 0 auto;
+        padding: 1rem;
+        height: 100%;
+
+        &+section {
+            margin-top: 1rem;
+        }
+
+        &>:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+/* =================================================================================
+    カード表示
+================================================================================== */
+
+section div.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1rem;
+
+    &>.card {
+        padding: .5rem;
+        display: flex;
+        flex-direction: column;
+
+        &>*:has(+*) {
+            margin-bottom: .5rem;
+        }
+
+        &>h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+
+        &>img.thumbnail {
+            display: block;
+            width: 100%;
+            height: 10rem;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+
+        &>p {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        &>button {
+            display: block;
+            width: 100%;
+
+            &>a {
+                display: block;
+                width: 100%;
+                text-decoration: none;
+            }
+        }
+
+        &>:last-child {
+            margin-top: auto;
+        }
+    }
+}
+
+/* =================================================================================
+    footer
+================================================================================== */
+
+footer {
+    width: 100%;
+    margin: 1rem 0;
+
+    &>p {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--text);
+        text-align: center;
+    }
+}
+
+/* =================================================================================
+    パンくずリスト
+================================================================================== */
+
+main>nav.breadcrumb {
+    width: min(90%, 72rem);
+    margin: 0 auto;
+    padding: 0 0 1rem;
+
+    &>ul {
+        display: flex;
+        gap: .5rem;
+        list-style: none;
+        padding: .5rem;
+        border-radius: 1rem;
+        margin: 0;
+
+        &>li {
+            font-size: 1rem;
+            font-weight: 300;
+            margin: 0;
+
+            &>a {
+                color: var(--text);
+                text-decoration: none;
+            }
+
+            &+li::before {
+                content: '>';
+                margin-right: .5rem;
+                opacity: .5;
+            }
+        }
+    }
+}
+
+/* =================================================================================
+    main>.input-area
+================================================================================== */
+
+main>.input-area {
+    width: min(90%, 72rem);
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &>p {
+        font-size: 2rem;
+        font-weight: 300;
+
+        &>input {
+            width: 4rem;
+            border-radius: 1rem;
+            padding: 0 .5rem;
+            text-align: center;
+            border: 1px solid oklch(from var(--text) l c h / .25);
+            font-size: 2rem;
+            font-weight: 300;
+            background-color: var(--base);
+        }
+    }
+}
+
+/* =================================================================================
+    main>.preview-area
+================================================================================== */
+
+main>.preview-area {
+    & table {
+        table-layout: fixed;
+
+        & td[id] {
+            font-size: 4rem;
+
+            &#ja-JP {
+                font-family: 'Noto Sans JP';
+            }
+
+            &#ko-KR {
+                font-family: 'Noto Sans KR';
+            }
+
+            &#zh-Hans {
+                font-family: 'Noto Sans SC';
+            }
+
+            &#zh-Hant-TW {
+                font-family: 'Noto Sans TC';
+            }
+
+            &#zh-Hant-HK {
+                font-family: 'Noto Sans HK';
+            }
+        }
+    }
+}
+
+/* =================================================================================
+    main>.diff-area
+================================================================================== */
+
+main>.diff-area {
+    &>canvas {
+        display: block;
+        height: 33vh;
+        margin: 0 auto;
+        aspect-ratio: 1;
+        border-radius: 1rem;
+        border: 1px solid oklch(from var(--text) l c h / .25);
+        background-color: #111;
+    }
+}

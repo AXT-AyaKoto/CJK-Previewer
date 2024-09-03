@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CJK Previewer</title>
+    <!-- ファイル読み込み -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" type="module"></script>
+    <!-- ==== favicon設定 ==== -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/AyaExpTech/logos/AyaExpTech_AXTBlue_AXTWhite.svg">
+    <!-- ==== OGP設定 ==== -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CJK Previewer">
+    <meta property="og:description" content="CJK Previewer">
+    <meta name="twitter:card" content="summary">
+</head>
+
+<body>
+    <header>
+        <a href="/">
+            <h1>CJK Previewer</h1>
+        </a>
+    </header>
+    <main>
+        <section class="input-area">
+            <p class="center">
+                <label for="input">漢字一字</label> <input type="text" maxlength="1" id="input" name="input" value="骨">
+            </p>
+        </section>
+        <section class="preview-area">
+            <p>
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">日本語</th>
+                        <th rowspan="2">韓国語</th>
+                        <th colspan="3">中国語</th>
+                    </tr>
+                    <tr>
+                        <th>簡体字</th>
+                        <th>繁体字(台湾)</th>
+                        <th>繁体字(香港)</th>
+                    </tr>
+                    <tr>
+                        <th>ja-JP</th>
+                        <th>ko-KR</th>
+                        <th>zh-Hans</th>
+                        <th>zh-Hant-TW</th>
+                        <th>zh-Hant-HK</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="ja-JP">骨</td>
+                        <td id="ko-KR">骨</td>
+                        <td id="zh-Hans">骨</td>
+                        <td id="zh-Hant-TW">骨</td>
+                        <td id="zh-Hant-HK">骨</td>
+                    </tr>
+                </tbody>
+            </table>
+            </p>
+        </section>
+        <section class="diff-area">
+            <p>
+            <ul>
+                <li><label for="R">赤</label> : <select name="diff-red" id="diff-red">
+                        <option value="ja-JP">日本語</option>
+                        <option value="ko-KR">韓国語</option>
+                        <option value="zh-Hans">中国語(簡体字)</option>
+                        <option value="zh-Hant-TW">中国語(繁体字(台湾))</option>
+                        <option value="zh-Hant-HK">中国語(繁体字(香港))</option>
+                    </select></li>
+                <li><label for="G">緑</label> : <select name="diff-green" id="diff-green">
+                        <option value="ja-JP">日本語</option>
+                        <option value="ko-KR">韓国語</option>
+                        <option value="zh-Hans">中国語(簡体字)</option>
+                        <option value="zh-Hant-TW">中国語(繁体字(台湾))</option>
+                        <option value="zh-Hant-HK">中国語(繁体字(香港))</option>
+                    </select></li>
+                <li><label for="B">青</label> : <select name="diff-blue" id="diff-blue">
+                        <option value="ja-JP">日本語</option>
+                        <option value="ko-KR">韓国語</option>
+                        <option value="zh-Hans">中国語(簡体字)</option>
+                        <option value="zh-Hant-TW">中国語(繁体字(台湾))</option>
+                        <option value="zh-Hant-HK">中国語(繁体字(香港))</option>
+                    </select></li>
+            </ul>
+            </p>
+            <canvas width="1024" height="1024" class="neumorphism-down" id="diff-canvas"></canvas>
+        </section>
+    </main>
+</body>
+
+</html>
